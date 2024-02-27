@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">RamdomUser</string>
+    <string name="image_content_desc">image user</string>
+    <string name="initapp">Espere por favor...</string>
+    <string name="endapp">Gracias </string>
+</resources>
