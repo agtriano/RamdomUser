@@ -1,11 +1,18 @@
 package com.agt.ramsomuser.ui.characterslist
 
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-
-
-
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -21,13 +28,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
-
 import com.agt.ramsomuser.data.model.Result
 import com.agt.ramsomuser.data.model.Results
 import com.agt.ramsomuser.tolog
@@ -39,7 +44,6 @@ fun ContactsListBody(
 ) {
 
     if (myList != null) {
-
 
 
         var text by rememberSaveable { mutableStateOf("") }
@@ -61,17 +65,17 @@ fun ContactsListBody(
             )
             Spacer(modifier = Modifier.height(8.dp))
 
-            tolog(" results size "+myList.results.size)
-            ListComposable(myList.results, onCharacterClick = onCharacterClick,text)
+            tolog(" results size " + myList.results.size)
+            ListComposable(myList.results, onCharacterClick = onCharacterClick, text)
         }
     }
 }
 
 fun getFilterList(myList: ArrayList<Result>, text: String): List<Result> {
-    var filterList: List<Result> = myList.filter {
-            result -> result.name?.first?.contains(text) == true
-            || result.name?.last?.contains(text) == true
-            || result.email?.contains(text)   == true
+    var filterList: List<Result> = myList.filter { result ->
+        result.name?.first?.contains(text) == true
+                || result.name?.last?.contains(text) == true
+                || result.email?.contains(text) == true
     }
     return filterList
 }
@@ -81,7 +85,7 @@ fun getFilterList(myList: ArrayList<Result>, text: String): List<Result> {
 fun ListComposable(myList: ArrayList<Result>, onCharacterClick: (Int) -> Unit, text: String) {
 
 
-   var  myFilterList: ArrayList<Result> = getFilterList(myList,text) as ArrayList<Result>
+    var myFilterList: ArrayList<Result> = getFilterList(myList, text) as ArrayList<Result>
 
     LazyColumn(modifier = Modifier.fillMaxHeight()) {
 
@@ -100,8 +104,6 @@ fun ListComposable(myList: ArrayList<Result>, onCharacterClick: (Int) -> Unit, t
                         .padding(all = 1.dp)
                         .fillMaxWidth()
                         .clickable { onCharacterClick(myList.indexOf(item)) }) {
-
-
 
 
                     Image(
@@ -127,19 +129,18 @@ fun ListComposable(myList: ArrayList<Result>, onCharacterClick: (Int) -> Unit, t
                     ) {
                         Text(
                             text = " ${item.name?.title} ${item.name?.first} ${item.name?.last}",
-                            color = Color.Black,fontSize = 16.sp,fontWeight = FontWeight.Bold,
+                            color = Color.Black, fontSize = 16.sp, fontWeight = FontWeight.Bold,
                             style = MaterialTheme.typography.h6,
                             modifier = Modifier.padding(all = 4.dp)
                         )
 
                         Text(
                             text = " ${item.email}",
-                            color = Color.Gray,fontSize = 14.sp,fontWeight = FontWeight.Normal,
+                            color = Color.Gray, fontSize = 14.sp, fontWeight = FontWeight.Normal,
                             style = MaterialTheme.typography.subtitle2,
                             modifier = Modifier.padding(all = 4.dp)
                         )
                     }
-
 
 
                 }
@@ -149,8 +150,6 @@ fun ListComposable(myList: ArrayList<Result>, onCharacterClick: (Int) -> Unit, t
             Spacer(modifier = Modifier.height(5.dp))
         }
     }
-
-
 
 
 }

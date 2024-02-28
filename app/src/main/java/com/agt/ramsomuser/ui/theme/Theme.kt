@@ -16,12 +16,9 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
-import com.agt.ramsomuser.R
 
 private val DarkColorScheme = darkColorScheme(
     primary = white,
@@ -49,20 +46,17 @@ private val LightColorScheme = lightColorScheme(
 )
 
 
-
-
-
 val MyTypographyCustom = Typography(
     defaultFontFamily = appFonts,
 
-   h6 = TextStyle(
+    h6 = TextStyle(
         fontFamily = appFonts,
         fontWeight = FontWeight.Medium,
         fontSize = 16.sp,
         lineHeight = 21.sp,
         letterSpacing = 0.33.sp
     ),
-    subtitle2= TextStyle(
+    subtitle2 = TextStyle(
         fontFamily = appFonts,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,

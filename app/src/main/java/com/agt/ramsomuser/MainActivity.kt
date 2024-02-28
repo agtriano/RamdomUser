@@ -9,14 +9,10 @@ import androidx.activity.compose.BackHandler
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -28,8 +24,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -111,21 +105,21 @@ class MainActivity : ComponentActivity() {
             var backPressedCount by remember { mutableStateOf(0) }
             var title: String? = "CONTACTOS"
 
-            var titleColor:Color=Color.Black
-            var backColor:Color=Color.White
+            var titleColor: Color = Color.Black
+            var backColor: Color = Color.White
 
-            if (mainActivityViewModel.contactSelected.value != null) {
+            if (currentScreen.name==RamdomUserScreen.ContactsDetails.name) {
                 val value = mainActivityViewModel.contactSelected.value
                 title = " ${value?.name?.first} ${value?.name?.last}".toUpperCase()
-                titleColor=Color.White
-                backColor= Color.Transparent
-                systemUiController.setStatusBarColor( backColor,false)
-            }else{
-                titleColor=Color.Black
-                backColor= Color.White
-                systemUiController.setStatusBarColor( backColor,true)
+                titleColor = Color.White
+                backColor = Color.Transparent
+                systemUiController.setStatusBarColor(backColor, false)
+            } else {
+                titleColor = Color.Black
+                backColor = Color.White
+                systemUiController.setStatusBarColor(backColor, true)
             }
-
+            tolog("currentScreen $currentScreen")
 
             BackHandler {
                 activityKiller()
@@ -142,7 +136,7 @@ class MainActivity : ComponentActivity() {
                         colors = TopAppBarDefaults.topAppBarColors(
                             containerColor = backColor,
                             titleContentColor = titleColor,
-                            actionIconContentColor =  titleColor,
+                            actionIconContentColor = titleColor,
                             navigationIconContentColor = titleColor
                         ),
 
@@ -151,7 +145,6 @@ class MainActivity : ComponentActivity() {
                         },
                         navigationIcon = {
                             IconButton(onClick = {
-                                mainActivityViewModel.contactSelected.postValue(null)
                                 dispatcher.onBackPressed()
                             }) {
                                 Icon(currentScreen.icon, "toolbarIcon")
@@ -159,7 +152,7 @@ class MainActivity : ComponentActivity() {
                         },
 
 
-                    )
+                        )
                 }
             ) { innerPadding ->
                 RamdomUserNavHost(

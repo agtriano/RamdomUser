@@ -4,7 +4,12 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -16,10 +21,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
 import com.agt.ramsomuser.MainActivity
+import com.agt.ramsomuser.R
 import com.agt.ramsomuser.ui.viewmodel.MainActivityViewModel
-import  com.agt.ramsomuser.R
 
 @Composable
 fun OverviewBody(mainActivityViewModel: MainActivityViewModel, mainActivity: MainActivity) {
@@ -46,7 +50,7 @@ fun OverviewBody(mainActivityViewModel: MainActivityViewModel, mainActivity: Mai
                 modifier = Modifier.padding(10.dp),
                 fontWeight = FontWeight.Bold,
                 fontSize = 30.sp,
-                color= Color.White
+                color = Color.White
             )
         }
     }

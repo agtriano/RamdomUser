@@ -9,7 +9,7 @@ import com.agt.ramsomuser.data.model.Results
 import com.agt.ramsomuser.domain.GetAllContactsUseCase
 import kotlinx.coroutines.launch
 
-class MainActivityViewModel : ViewModel(){
+class MainActivityViewModel : ViewModel() {
     val allConstactsListModel = MutableLiveData<Results>()
     var getAllContactsListUseCase = GetAllContactsUseCase()
     val contactSelected = MutableLiveData<Result>()
@@ -28,7 +28,7 @@ class MainActivityViewModel : ViewModel(){
     }
 
     private fun tolog(s: String) {
-        Log.d("RAMDOMUSER",s)
+        Log.d("RAMDOMUSER", s)
     }
 
     fun onContactSelected(it: Int) {

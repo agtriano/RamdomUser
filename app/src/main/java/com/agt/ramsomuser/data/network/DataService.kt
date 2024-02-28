@@ -16,7 +16,8 @@ class DataService {
 
     suspend fun getAllContacts(): Response<Results>? {
         return withContext(Dispatchers.IO) {
-            val response: Response<Results> = retrofit.create(DataApiClient::class.java).getAllContacts()
+            val response: Response<Results> =
+                retrofit.create(DataApiClient::class.java).getAllContacts()
             tolog(" response " + response)
             response
         }

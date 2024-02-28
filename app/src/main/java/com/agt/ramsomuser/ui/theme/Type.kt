@@ -1,7 +1,6 @@
 package com.agt.ramsomuser.ui.theme
 
 import androidx.compose.material3.Typography
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -13,16 +12,12 @@ import com.agt.ramsomuser.R
 
 
 val appFonts = FontFamily(
-    Font(R.font.oswald_regular,FontWeight.W600),
+    Font(R.font.oswald_regular, FontWeight.W600),
     Font(R.font.oswald_regular, FontWeight.Normal),
     Font(R.font.oswald_regular, FontWeight.Medium),
     Font(R.font.oswald_light, FontWeight.Light),
     Font(R.font.oswald_bold, FontWeight.Bold)
 )
-
-
-
-
 
 
 val Typography = Typography(
@@ -51,7 +46,6 @@ val Typography = Typography(
         lineHeight = 16.sp,
         letterSpacing = 0.5.sp
     ),
-
 
 
     /* Other default text styles to override

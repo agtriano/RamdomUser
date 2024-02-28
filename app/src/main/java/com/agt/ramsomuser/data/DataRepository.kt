@@ -15,14 +15,11 @@ class DataRepository {
 
         val response: Response<Results>? = api.getAllContacts()
         val datam: Results = response?.body()!!
-        
+
         ContactsListProvider.dataList = datam
         tolog("getAllContacts response " + response)
-        return  ContactsListProvider.dataList
+        return ContactsListProvider.dataList
     }
-
-
-
 
 
     fun tolog(msg: String) {

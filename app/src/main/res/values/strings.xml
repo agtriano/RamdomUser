@@ -3,4 +3,14 @@
     <string name="image_content_desc">image user</string>
     <string name="initapp">Espere por favor...</string>
     <string name="endapp">Gracias </string>
+
+    <string name="item_name">Nombre y apellidos</string>
+    <string name="item_date">Fecha de registro</string>
+    <string name="item_mail">Email</string>
+    <string name="item_genero">Género</string>
+    <string name="item_adress">Dirección</string>
+    <string name="item_phone">Teléfono</string>
+    <string name="female">Mujer</string>
+    <string name="male">Hombre</string>
+
 </resources>

@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -40,30 +41,29 @@ fun ContactsDetailsBody(value: com.agt.ramsomuser.data.model.Result?) {
 
     Image(
         painterResource(R.drawable.pic_detail),
-        "content description",
+        "details image",
         modifier = Modifier
             .height(198.dp)
             .fillMaxWidth()
             .graphicsLayer {
                 translationY = -130.dp.toPx()
-            } ,
+            },
         contentScale = ContentScale.Crop
     )
 
 
-    Spacer(modifier = Modifier.height(((250)-(77)).dp))
+    Spacer(modifier = Modifier.height(((400) ).dp))
 
     Column(
         modifier = Modifier
             .padding(all = 0.dp)
             .fillMaxWidth()
+            .fillMaxHeight()
     ) {
 
 
-     //   Spacer(modifier = Modifier.height(160.dp))
-
         val borderWidth = 4.dp
-        
+
         Image(
             painter = rememberImagePainter(
                 data = value?.picture?.thumbnail,
@@ -90,7 +90,7 @@ fun ContactsDetailsBody(value: com.agt.ramsomuser.data.model.Result?) {
                 .padding(all = 1.dp)
                 .align(Alignment.End)
                 .graphicsLayer {
-                    translationY = -50.dp.toPx()
+                    translationY = 50.dp.toPx()
                 }
 
         ) {
@@ -141,32 +141,45 @@ fun ContactsDetailsBody(value: com.agt.ramsomuser.data.model.Result?) {
                     Spacer(modifier = Modifier.width(1.dp))
 
                     ItemInfoView(
-                        "Nombre y apellidos",
+                        stringResource(R.string.item_name),
                         " ${value?.name?.title} ${value?.name?.first} ${value?.name?.last}",
                         R.drawable.ic_name, false
                     )
                     Spacer(modifier = Modifier.height(2.dp))
-                    ItemInfoView("Email", value?.email.toString(), R.drawable.ic_email, false)
+                    ItemInfoView( stringResource(R.string.item_mail), value?.email.toString(), R.drawable.ic_email, false)
                     Spacer(modifier = Modifier.height(2.dp))
-                    ItemInfoView("Género", value?.gender.toString(), R.drawable.ic_gender, true)
+
+
+                    ItemInfoView(stringResource(R.string.item_genero), onGender(value?.gender.toString()), R.drawable.ic_gender, true)
                     Spacer(modifier = Modifier.height(2.dp))
 
                     val dateFormat: DateFormat = SimpleDateFormat("dd-MM-yyyy")
                     var strDate: String? = null
-                    val dateRegister: Date? =value?.registered?.date
-                    if(dateRegister!=null){
-                        strDate=dateFormat.format(value?.registered?.date)
+                    val dateRegister: Date? = value?.registered?.date
+                    if (dateRegister != null) {
+                        strDate = dateFormat.format(value?.registered?.date)
                     }
 
-                    ItemInfoView("Fecha de registro", strDate!!, R.drawable.ic_calendar, true)
+                    ItemInfoView( stringResource(R.string.item_date), strDate!!, R.drawable.ic_calendar, true)
                     Spacer(modifier = Modifier.height(2.dp))
-                    ItemInfoView("Teléfono", value?.phone.toString(), R.drawable.ic_phone, true)
+
+                    ItemInfoView(stringResource(R.string.item_phone), value?.phone.toString(), R.drawable.ic_phone, true)
                     Spacer(modifier = Modifier.height(2.dp))
-                    ItemInfoViewLocation("Dirección", value?.location)
+
+
+                    ItemInfoViewLocation(stringResource(R.string.item_adress), value?.location)
                 }
             }
         }
 
+    }
+}
+@Composable
+fun onGender(gender: String): String {
+    if(gender.equals("female")){
+     return   stringResource(R.string.female)
+    }else{
+    return    stringResource(R.string.male)
     }
 }
 
@@ -193,14 +206,14 @@ fun ItemInfoViewLocation(titulo: String, location: Location?) {
 
             Text(
                 text = titulo,
-                color = Color.Gray,fontSize = 11.sp,fontWeight = FontWeight.Normal,
+                color = Color.Gray, fontSize = 11.sp, fontWeight = FontWeight.Normal,
                 style = MaterialTheme.typography.body2,
                 modifier = Modifier.padding(all = 2.dp)
             )
 
             Text(
                 text = "${location?.city} ${location?.country}",
-                color = Color.Black,fontSize = 14.sp,fontWeight = FontWeight.Bold,
+                color = Color.Black, fontSize = 14.sp, fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.subtitle2,
                 modifier = Modifier.padding(all = 2.dp)
             )
@@ -217,7 +230,8 @@ fun ItemInfoViewLocation(titulo: String, location: Location?) {
 @Composable
 fun ItemInfoView(titulo: String, subtitulo: String, drawable: Int, scale: Boolean) {
 
-    var scaleMode: ContentScale = ContentScale.None
+    var scaleMode: ContentScale = ContentScale.Inside
+
 
     if (scale) {
         scaleMode = ContentScale.FillWidth
@@ -253,14 +267,14 @@ fun ItemInfoView(titulo: String, subtitulo: String, drawable: Int, scale: Boolea
 
             Text(
                 text = titulo,
-                color = Color.Gray,fontSize = 11.sp,fontWeight = FontWeight.Normal,
+                color = Color.Gray, fontSize = 11.sp, fontWeight = FontWeight.Normal,
                 style = MaterialTheme.typography.body2,
                 modifier = Modifier.padding(all = 2.dp)
             )
 
             Text(
                 text = subtitulo,
-                color = Color.Black,fontSize = 14.sp,fontWeight = FontWeight.Bold,
+                color = Color.Black, fontSize = 14.sp, fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.subtitle2,
                 modifier = Modifier.padding(all = 2.dp)
             )
